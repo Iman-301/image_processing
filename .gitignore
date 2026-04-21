@@ -34,13 +34,8 @@ wheels/
 .DS_Store
 Thumbs.db
 
-# Project specific
-images/output/
-images/results/
-src/images/output/
-src/images/results/
-*.log
+# Kiro specs (internal development files)
+.kiro/
 
-# Keep input folder structure but ignore images
-images/input/*
-!images/input/.gitkeep
+
+
