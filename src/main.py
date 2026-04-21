@@ -61,9 +61,9 @@ def main():
     print("Folder structure created successfully!")
     
     # Load images (adjust path based on where script is run from)
-    input_folder = Path('../images/input')
+    input_folder = Path('images/input')
     if not input_folder.exists():
-        input_folder = Path('images/input')
+        input_folder = Path('../images/input')
     
     images = loader.load_batch(str(input_folder))
     
