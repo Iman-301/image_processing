@@ -37,6 +37,8 @@ Thumbs.db
 # Project specific
 images/output/
 images/results/
+src/images/output/
+src/images/results/
 *.log
 
 # Keep input folder structure but ignore images
