@@ -37,5 +37,6 @@ Thumbs.db
 # Kiro specs (internal development files)
 .kiro/
 
-
-
+# Project specific - only ignore results (visualizations)
+src/images/results/
+*.log

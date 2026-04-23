@@ -80,51 +80,54 @@ def main():
     for filename, image in images:
         print(f"\nProcessing {filename}...")
         
-        # Convert to grayscale
+        # Keep original for display
+        original_display = image.copy()
+        
+        # Convert to grayscale for processing
         gray = loader.convert_to_grayscale(image)
         
         # 1. Image Negative
         negative = processor.image_negative(gray)
         output_mgr.save_processed_image(negative, 'negative', filename)
         results_path = output_mgr.results_path / f'{Path(filename).stem}_negative.png'
-        visualizer.plot_comparison(gray, negative, 'Image Negative', 'negative', str(results_path))
+        visualizer.plot_comparison(original_display, negative, 'Image Negative', 'negative', str(results_path))
         
         # 2. Gamma Correction
         gamma = processor.gamma_correction(gray, gamma=0.5)
         output_mgr.save_processed_image(gamma, 'gamma', filename)
         results_path = output_mgr.results_path / f'{Path(filename).stem}_gamma.png'
-        visualizer.plot_comparison(gray, gamma, 'Gamma Correction (γ=0.5)', 'gamma', str(results_path))
+        visualizer.plot_comparison(original_display, gamma, 'Gamma Correction (γ=0.5)', 'gamma', str(results_path))
         
         # 3. Log Transformation
         log_trans = processor.log_transformation(gray)
         output_mgr.save_processed_image(log_trans, 'log', filename)
         results_path = output_mgr.results_path / f'{Path(filename).stem}_log.png'
-        visualizer.plot_comparison(gray, log_trans, 'Log Transformation', 'log', str(results_path))
+        visualizer.plot_comparison(original_display, log_trans, 'Log Transformation', 'log', str(results_path))
         
         # 4. Contrast Stretching
         contrast = processor.contrast_stretching(gray, 50, 0, 200, 255)
         output_mgr.save_processed_image(contrast, 'contrast', filename)
         results_path = output_mgr.results_path / f'{Path(filename).stem}_contrast.png'
-        visualizer.plot_comparison(gray, contrast, 'Contrast Stretching', 'contrast', str(results_path))
+        visualizer.plot_comparison(original_display, contrast, 'Contrast Stretching', 'contrast', str(results_path))
         
         # 5. Histogram Equalization
         hist_eq = processor.histogram_equalization(gray)
         output_mgr.save_processed_image(hist_eq, 'histogram', filename)
         results_path = output_mgr.results_path / f'{Path(filename).stem}_histogram.png'
-        visualizer.plot_comparison(gray, hist_eq, 'Histogram Equalization', 'histogram', str(results_path))
+        visualizer.plot_comparison(original_display, hist_eq, 'Histogram Equalization', 'histogram', str(results_path))
         
         # 6. Intensity Level Slicing
         intensity_slice = processor.intensity_level_slicing(gray, 100, 200)
         output_mgr.save_processed_image(intensity_slice, 'intensity', filename)
         results_path = output_mgr.results_path / f'{Path(filename).stem}_intensity.png'
-        visualizer.plot_comparison(gray, intensity_slice, 'Intensity Level Slicing', 'intensity', str(results_path))
+        visualizer.plot_comparison(original_display, intensity_slice, 'Intensity Level Slicing', 'intensity', str(results_path))
         
         # 7. Bit Plane Slicing
         bit_plane = processor.bit_plane_slicing(gray, 7)
         output_mgr.save_processed_image(bit_plane, 'bitplane', filename)
         all_planes = processor.extract_all_bit_planes(gray)
         results_path = output_mgr.results_path / f'{Path(filename).stem}_bitplanes.png'
-        visualizer.plot_bit_planes(gray, all_planes, str(results_path))
+        visualizer.plot_bit_planes(original_display, all_planes, str(results_path))
         
         print(f"✓ Completed processing {filename}")
     

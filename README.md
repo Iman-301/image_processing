@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-1. Place your test images in the `images/input/` folder
+1. Place your test images in the `src/images/input/` folder
 2. Run the main script:
 
 ```bash
@@ -29,17 +29,17 @@ python main.py
 ```
 
 3. Results will be saved in:
-   - `images/output/` - Processed images organized by method
-   - `images/results/` - Comparison visualizations for PPT
+   - `src/images/output/` - Processed images organized by method
+   - `src/images/results/` - Comparison visualizations for PPT
 
 ## Folder Structure
 
 ```
-├── images/
-│   ├── input/          # Place your test images here
-│   ├── output/         # Processed images
-│   └── results/        # Visualizations for PPT
 ├── src/
+│   ├── images/
+│   │   ├── input/          # Place your test images here
+│   │   ├── output/         # Processed images
+│   │   └── results/        # Visualizations for PPT
 │   ├── image_loader.py
 │   ├── image_processor.py
 │   ├── visualizer.py
